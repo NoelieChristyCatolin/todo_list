@@ -10,14 +10,16 @@ class TodoScreen extends StatefulWidget {
 
 class _TodoScreenState extends State<TodoScreen> {
   int _selectedindex = 0;
-  List<Widget> navigationScreens = <Widget>[
-    const ListScreen(title: 'All',),
-    const ListScreen(title: 'Complete',),
-    const ListScreen(title: 'Incomplete',),
-  ];
+  List<Widget> navigationScreens = [];
 
   @override
   Widget build(BuildContext context) {
+    navigationScreens = <Widget>[
+      const ListScreen(title: 'All'),
+      const ListScreen(title: 'Complete', isCompletted: true),
+      const ListScreen(title: 'Incomplete', isCompletted: false),
+    ];
+
     return Scaffold(
       appBar: AppBar(title: const Text("To Do's"),),
       body: navigationScreens.elementAt(_selectedindex),
