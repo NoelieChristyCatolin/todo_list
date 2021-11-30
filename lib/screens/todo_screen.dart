@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo_list/bloc/todo_cubit.dart';
+import 'package:todo_list/bloc/todo_state.dart';
 import 'package:todo_list/screens/list_screen.dart';
 
 class TodoScreen extends StatefulWidget {
@@ -9,36 +12,38 @@ class TodoScreen extends StatefulWidget {
 }
 
 class _TodoScreenState extends State<TodoScreen> {
-  int _selectedindex = 0;
+  int _selectedIndex = 0;
   List<Widget> navigationScreens = [];
 
   @override
   Widget build(BuildContext context) {
-    navigationScreens = <Widget>[
-      const ListScreen(title: 'All'),
-      const ListScreen(title: 'Complete', isCompletted: true),
-      const ListScreen(title: 'Incomplete', isCompletted: false),
-    ];
+    setState(() {
+      navigationScreens = <Widget>[
+        const ListScreen(title: 'All'),
+        const ListScreen(title: 'Complete', isCompletted: true),
+        const ListScreen(title: 'Incomplete', isCompletted: false),
+      ];
+    });
 
-    return Scaffold(
+    return BlocBuilder<TodoCubit, TodoState>(builder: (context, state) => Scaffold(
       appBar: AppBar(title: const Text("To Do's"),),
-      body: navigationScreens.elementAt(_selectedindex),
+      body: navigationScreens.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.list), label: 'All'),
           BottomNavigationBarItem(icon: Icon(Icons.check_circle_outline), label: 'Complete'),
           BottomNavigationBarItem(icon: Icon(Icons.calendar_today_outlined), label: 'Incomplete'),
         ],
-        currentIndex: _selectedindex,
+        currentIndex: _selectedIndex,
         selectedItemColor: Colors.blue,
         onTap: onItemTapped,
       ),
-    );
+    ));
   }
 
   onItemTapped(int value){
     setState(() {
-      _selectedindex = value;
+      _selectedIndex = value;
     });
   }
 }

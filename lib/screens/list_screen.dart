@@ -17,14 +17,9 @@ class ListScreen extends StatefulWidget {
 class _ListScreenState extends State<ListScreen> {
 
   @override
-  void initState() {
-    super.initState();
-    print('widget.isCompletted: ${widget.isCompletted}');
-    context.read<TodoCubit>().getTodos(isCompletted: widget.isCompletted);
-  }
-
-  @override
   Widget build(BuildContext context) {
+    print('build');
+    context.read<TodoCubit>().getTodos(isCompletted: widget.isCompletted);
     return BlocBuilder<TodoCubit, TodoState>(
       builder: (context, state) =>  Column(
         children: [
@@ -34,7 +29,6 @@ class _ListScreenState extends State<ListScreen> {
                 itemCount: state.todos.length,
                 itemBuilder: (context, index) => ListTile(
                   leading: Checkbox(
-                    // value:  isCompleted(state.todos[index]),
                     value: state.todos[index].isCompleted,
                     onChanged: (value){
                       setState(() {
