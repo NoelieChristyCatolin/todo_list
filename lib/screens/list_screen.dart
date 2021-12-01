@@ -59,6 +59,8 @@ class _ListScreenState extends State<ListScreen> {
                           onPressed: () {
                             setState(() {
                               context.read<TodoCubit>().addTodo(inputController.text);
+                              inputController.clear();
+                              Navigator.pop(context);
                             });
                           },
                           child: Row(
