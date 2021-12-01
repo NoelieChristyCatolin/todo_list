@@ -1,27 +1,29 @@
+import 'package:localstorage/localstorage.dart';
 import 'package:todo_list/models/todo.dart';
 
 class TodoRepository {
   TodoRepository();
 
-  final List<Todo> _todos = [
-    Todo(item: 'To do 1'),
-    Todo(item: 'To do 2', isCompleted: true),
-    Todo(item: 'To do 3', isCompleted: false),
-  ];
+  static String storageName = 'TodoStorage';
+  static String todos = 'todos';
+  final LocalStorage storage = LocalStorage(storageName);
+  List<Todo> _todos = [];
 
   List<Todo> getTodos(){
+    _todos = storage.getItem(todos) ?? [];
     return _todos;
   }
 
 
   List<Todo> updateTodos(int index){
     _todos[index].isCompleted = !_todos[index].isCompleted;
+    storage.setItem(todos, _todos);
     return _todos;
   }
 
   List<Todo> addTodo(String item){
     _todos.add(Todo(item: item));
-
+    storage.setItem(todos, _todos);
     return _todos;
   }
 }
