@@ -16,11 +16,11 @@ class TodoCubit extends Cubit<TodoState> {
       filteredList = todos;
     }
     else {
-      todos.forEach((element) {
+      for (var element in todos) {
         if(element.isCompleted == isCompletted){
           filteredList.add(element);
         }
-      });
+      }
     }
 
     emit(state.copyWith(todos: filteredList));
