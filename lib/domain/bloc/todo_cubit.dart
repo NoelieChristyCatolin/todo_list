@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todo_list/models/todo.dart';
-import 'package:todo_list/todo_repository.dart';
-import 'package:todo_list/bloc/todo_state.dart';
+import 'package:todo_list/domain/bloc/todo_state.dart';
+import 'package:todo_list/domain/models/todo.dart';
+import 'package:todo_list/data/todo_repository.dart';
 
 class TodoCubit extends Cubit<TodoState> {
   TodoCubit({required this.todoRepository}) : super(TodoState());

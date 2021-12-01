@@ -1,5 +1,5 @@
 import 'package:localstorage/localstorage.dart';
-import 'package:todo_list/models/todo.dart';
+import 'package:todo_list/domain/models/todo.dart';
 
 class TodoRepository {
   TodoRepository();

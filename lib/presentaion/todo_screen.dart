@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todo_list/bloc/todo_cubit.dart';
-import 'package:todo_list/bloc/todo_state.dart';
-import 'package:todo_list/screens/list_screen.dart';
+import 'package:todo_list/domain/bloc/todo_cubit.dart';
+import 'package:todo_list/domain/bloc/todo_state.dart';
+import 'package:todo_list/presentaion/list_screen.dart';
 
 class TodoScreen extends StatefulWidget {
   const TodoScreen({Key? key}) : super(key: key);
@@ -20,7 +20,7 @@ class _TodoScreenState extends State<TodoScreen> {
     setState(() {
       navigationScreens = <Widget>[
         const ListScreen(title: 'All'),
-        const ListScreen(title: 'Complete', isCompletted: true),
+        const ListScreen(title: 'Completed', isCompletted: true),
         const ListScreen(title: 'Incomplete', isCompletted: false),
       ];
     });

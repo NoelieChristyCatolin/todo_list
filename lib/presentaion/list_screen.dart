@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todo_list/bloc/todo_cubit.dart';
-import 'package:todo_list/bloc/todo_state.dart';
+
+import 'package:todo_list/domain/bloc/todo_cubit.dart';
+import 'package:todo_list/domain/bloc/todo_state.dart';
 
 class ListScreen extends StatefulWidget {
   const ListScreen({required this.title, this.isCompletted}) : super();
@@ -25,7 +26,10 @@ class _ListScreenState extends State<ListScreen> {
       builder: (context, state) =>  Scaffold(
         body: Column(
           children: [
-            Text(widget.title),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(widget.title, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),),
+            ),
             Expanded(
               child: ListView.builder(
                   itemCount: state.todos.length,
