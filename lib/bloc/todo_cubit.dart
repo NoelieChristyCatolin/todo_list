@@ -28,7 +28,13 @@ class TodoCubit extends Cubit<TodoState> {
   }
 
   void updatedTodoStatus(int index){
-    emit(state.copyWith(todos: todoRepository.updateTodos(index)));
+    List<Todo> todos =todoRepository.updateTodos(index);
+    emit(state.copyWith(todos: todos));
+  }
+
+  void addTodo(String item){
+    List<Todo> todos = todoRepository.addTodo(item);
+    emit(state.copyWith(todos: todos));
   }
 
 
