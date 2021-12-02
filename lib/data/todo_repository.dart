@@ -10,19 +10,21 @@ class TodoRepository {
   List<Todo> _todos = [];
 
   List<Todo> getTodos(){
-    _todos = storage.getItem(todos) ?? [];
+    _todos = storage.getItem(todos) ?? <Todo>[];
     return _todos;
   }
 
 
-  List<Todo> updateTodos(int index){
+  List<Todo> updateTodos(Todo todo){
+
+    int index = _todos.indexOf(todo);
     _todos[index].isCompleted = !_todos[index].isCompleted;
     storage.setItem(todos, _todos);
     return _todos;
   }
 
   List<Todo> addTodo(String item){
-    _todos.add(Todo(item: item));
+    _todos.add(Todo(id: _todos.length + 1, item: item));
     storage.setItem(todos, _todos);
     return _todos;
   }

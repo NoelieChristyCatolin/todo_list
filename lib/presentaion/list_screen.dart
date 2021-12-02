@@ -38,7 +38,7 @@ class _ListScreenState extends State<ListScreen> {
                       value: state.todos[index].isCompleted,
                       onChanged: (value){
                         setState(() {
-                          context.read<TodoCubit>().updatedTodoStatus(index);
+                          context.read<TodoCubit>().updatedTodoStatus(state.todos[index]);
                         });
                       },
                     ),
