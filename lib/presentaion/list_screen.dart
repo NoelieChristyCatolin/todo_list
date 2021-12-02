@@ -21,7 +21,7 @@ class _ListScreenState extends State<ListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    context.read<TodoCubit>().getTodos(isCompletted: widget.isCompletted);
+    context.read<TodoCubit>().getTodos(isCompleted: widget.isCompletted);
     return BlocBuilder<TodoCubit, TodoState>(
       builder: (context, state) =>  Scaffold(
         body: Column(

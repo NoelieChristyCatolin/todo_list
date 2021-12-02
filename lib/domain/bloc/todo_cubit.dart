@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_list/domain/bloc/todo_state.dart';
 import 'package:todo_list/domain/models/todo.dart';
@@ -8,27 +10,26 @@ class TodoCubit extends Cubit<TodoState> {
 
   final TodoRepository todoRepository;
 
-  List<Todo> getTodos({bool? isCompletted}){
+  void getTodos({bool? isCompleted}){
     List<Todo> todos = todoRepository.getTodos();
     List<Todo> filteredList = [];
 
-    if(isCompletted == null){
+    if(isCompleted == null){
       filteredList = todos;
     }
     else {
       for (var element in todos) {
-        if(element.isCompleted == isCompletted){
+        if(element.isCompleted == isCompleted){
           filteredList.add(element);
         }
       }
     }
 
     emit(state.copyWith(todos: filteredList));
-    return filteredList;
   }
 
   void updatedTodoStatus(Todo todo){
-    List<Todo> todos =todoRepository.updateTodos(todo);
+    List<Todo> todos = todoRepository.updateTodos(todo);
     emit(state.copyWith(todos: todos));
   }
 
