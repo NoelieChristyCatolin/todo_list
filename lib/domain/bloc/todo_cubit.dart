@@ -10,6 +10,12 @@ class TodoCubit extends Cubit<TodoState> {
 
   final TodoRepository todoRepository;
 
+  //get the list of todos
+  //filters the list according to the parameters value,
+  //null returns all todos
+  //true returns all completed items
+  //false returns all incompleted items
+  //updates the state value
   void getTodos({bool? isCompleted}){
     List<Todo> todos = todoRepository.getTodos();
     List<Todo> filteredList = [];
@@ -28,13 +34,17 @@ class TodoCubit extends Cubit<TodoState> {
     emit(state.copyWith(todos: filteredList));
   }
 
+  //updates the the status of the selected todo from incomplete to complete vice versa
+  //updates the state value
   void updatedTodoStatus(Todo todo){
     List<Todo> todos = todoRepository.updateTodos(todo);
     emit(state.copyWith(todos: todos));
   }
 
-  void addTodo(String item){
-    List<Todo> todos = todoRepository.addTodo(item);
+  //add the a new todo to the list
+  //updates the state value
+  void addTodo(String todo){
+    List<Todo> todos = todoRepository.addTodo(todo);
     emit(state.copyWith(todos: todos));
   }
 

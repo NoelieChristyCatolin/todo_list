@@ -21,6 +21,7 @@ class _ListScreenState extends State<ListScreen> {
 
   @override
   Widget build(BuildContext context) {
+    //calls the list of todos according to status
     context.read<TodoCubit>().getTodos(isCompleted: widget.isCompletted);
     return BlocBuilder<TodoCubit, TodoState>(
       builder: (context, state) =>  Scaffold(
@@ -38,6 +39,7 @@ class _ListScreenState extends State<ListScreen> {
                       value: state.todos[index].isCompleted,
                       onChanged: (value){
                         setState(() {
+                          //updates the value of the checkbox from being selected or not
                           context.read<TodoCubit>().updatedTodoStatus(state.todos[index]);
                         });
                       },
@@ -62,6 +64,7 @@ class _ListScreenState extends State<ListScreen> {
                       child: ElevatedButton(
                           onPressed: () {
                             setState(() {
+                              //adds the inputted text when submit is clicked
                               context.read<TodoCubit>().addTodo(inputController.text);
                               inputController.clear();
                               Navigator.pop(context);

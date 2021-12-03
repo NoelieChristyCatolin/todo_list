@@ -4,6 +4,7 @@ import 'package:todo_list/domain/bloc/todo_cubit.dart';
 import 'package:todo_list/domain/bloc/todo_state.dart';
 import 'package:todo_list/presentaion/list_screen.dart';
 
+//Holds the navigation between screens of todos
 class TodoScreen extends StatefulWidget {
   const TodoScreen({Key? key}) : super(key: key);
 
@@ -18,6 +19,7 @@ class _TodoScreenState extends State<TodoScreen> {
   @override
   Widget build(BuildContext context) {
     setState(() {
+      //list of screens for navigation
       navigationScreens = <Widget>[
         const ListScreen(title: 'All'),
         const ListScreen(title: 'Completed', isCompletted: true),
@@ -27,7 +29,7 @@ class _TodoScreenState extends State<TodoScreen> {
 
     return BlocBuilder<TodoCubit, TodoState>(builder: (context, state) => Scaffold(
       appBar: AppBar(title: const Text("To Do's"),),
-      body: navigationScreens.elementAt(_selectedIndex),
+      body: navigationScreens.elementAt(_selectedIndex), //displays the selected
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.list), label: 'All'),
@@ -41,6 +43,7 @@ class _TodoScreenState extends State<TodoScreen> {
     ));
   }
 
+  //set the value of the selected navigation item
   onItemTapped(int value){
     setState(() {
       _selectedIndex = value;
