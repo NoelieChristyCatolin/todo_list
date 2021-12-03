@@ -23,5 +23,6 @@ To mark the task as complete, the box on the left should be tapped. A check in a
 Go to the main flutter project directory and run the following:
 
 flutter test test/unit_test/todo_cubit_test.dart
+
 flutter test test/unit_test/todo_repository_test.dart
 
